@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Wireless Bluetooth Headphones",
+        "description": "High-quality wireless headphones with noise cancellation",
+        "ean": "1234567890123",
+        "cost": 89.99,
+        "units_in_stock": 45,
+        "brand": "AudioTech",
+        "categories": ["Electronics", "Audio", "Headphones"]
+    },
+    {
+        "name": "Gaming Mouse",
+        "description": "RGB gaming mouse with programmable buttons",
+        "ean": "2345678901234",
+        "cost": 34.99,
+        "units_in_stock": 78,
+        "brand": "GameGear",
+        "categories": ["Electronics", "Gaming", "Accessories"]
+    },
+    {
+        "name": "Coffee Maker",
+        "description": "Automatic drip coffee maker with programmable timer",
+        "ean": "3456789012345",
+        "cost": 129.99,
+        "units_in_stock": 23,
+        "brand": "BrewMaster",
+        "categories": ["Appliances", "Kitchen", "Coffee"]
+    },
+    {
+        "name": "Running Shoes",
+        "description": "Lightweight running shoes with cushioned sole",
+        "ean": "4567890123456",
+        "cost": 75.00,
+        "units_in_stock": 56,
+        "brand": "SportsFit",
+        "categories": ["Clothing", "Shoes", "Sports"]
+    },
+    {
+        "name": "Smartphone Case",
+        "description": "Protective case with card slots and stand",
+        "ean": "5678901234567",
+        "cost": 19.99,
+        "units_in_stock": 120,
+        "brand": "GuardTech",
+        "categories": ["Electronics", "Accessories", "Phone Cases"]
+    },
+    {
+        "name": "Desk Lamp",
+        "description": "LED desk lamp with adjustable brightness and color temperature",
+        "ean": "6789012345678",
+        "cost": 45.50,
+        "units_in_stock": 32,
+        "brand": "LightWorks",
+        "categories": ["Office", "Lighting", "Desk Accessories"]
+    },
+    {
+        "name": "Yoga Mat",
+        "description": "Non-slip exercise mat for yoga and fitness",
+        "ean": "7890123456789",
+        "cost": 29.99,
+        "units_in_stock": 67,
+        "brand": "FlexFit",
+        "categories": ["Sports", "Fitness", "Yoga"]
+    },
+    {
+        "name": "Bluetooth Speaker",
+        "description": "Portable waterproof Bluetooth speaker",
+        "ean": "8901234567890",
+        "cost": 55.00,
+        "units_in_stock": 8,
+        "brand": "SoundWave",
+        "categories": ["Electronics", "Audio", "Speakers"]
+    }
+]
