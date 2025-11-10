@@ -4,6 +4,15 @@
 
 This document provides complete instructions for setting up and using dev tunnels with the Product Catalog MCP Server. Dev tunnels allow you to expose your locally running MCP server to the internet via a secure public URL, making it accessible for testing, sharing, and integration purposes.
 
+### Installation
+
+If you haven't installed the DevTunnel CLI yet, you can do so using the following commands based on your operating system:
+```sh
+# on Windows use winget
+winget install Microsoft.devtunnel
+```
+for other operating systems and installation methods refer to the official DevTunnel documentation: 
+https://learn.microsoft.com/en-us/azure/developer/dev-tunnels/get-started
 ## Basic Setup Commands
 
 For a quick and simple setup, use these four basic commands:
