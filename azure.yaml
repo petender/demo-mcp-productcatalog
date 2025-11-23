@@ -1,0 +1,17 @@
+# Azure Developer CLI configuration file
+# This file defines the Azure resources and environment settings for your project.
+
+name: tdd-product-catalog-mcp
+metadata:
+  template: tdd-product-catalog-mcp@v0.1.0
+
+# Azure resources to provision
+services:
+  web:
+    project: ./
+    language: csharp
+    host: appservice
+  
+# Infrastructure as Code (IaC) settings
+infra:
+  provider: bicep

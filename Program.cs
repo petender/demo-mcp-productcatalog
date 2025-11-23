@@ -46,16 +46,18 @@ static async Task<List<Product>> LoadProductsAsync(IConfiguration configuration)
             return new List<Product>();
         }
 
-        if (!File.Exists(productCatalogConfig.ProductsPath))
+        var productsPath = Path.Combine(AppContext.BaseDirectory, productCatalogConfig.ProductsPath);
+
+        if (!File.Exists(productsPath))
         {
-            Console.WriteLine($"Products file not found at: {productCatalogConfig.ProductsPath}. Using empty product list.");
+            Console.WriteLine($"Products file not found at: {productsPath}. Using empty product list.");
             return new List<Product>();
         }
 
-        var jsonContent = await File.ReadAllTextAsync(productCatalogConfig.ProductsPath);
+        var jsonContent = await File.ReadAllTextAsync(productsPath);
         var products = JsonSerializer.Deserialize<List<Product>>(jsonContent, GetJsonOptions());
 
-        Console.WriteLine($"Loaded {products?.Count ?? 0} products from file: {productCatalogConfig.ProductsPath}");
+        Console.WriteLine($"Loaded {products?.Count ?? 0} products from file: {productsPath}");
         return products ?? new List<Product>();
     }
     catch (Exception ex)
