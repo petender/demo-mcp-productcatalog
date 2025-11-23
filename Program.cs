@@ -1,4 +1,5 @@
 using ModelContextProtocol.Server;
+using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
