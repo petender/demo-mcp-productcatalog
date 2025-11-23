@@ -1,0 +1,84 @@
+VSCode : 
+========
+
+dotnet run
+
+Terminal:
+=========
+devtunnel create pcat2-mcp -a --host-header unchanged
+devtunnel port create pcat2-mcp -p 47002
+devtunnel host pcat2-mcp
+
+New Terminal:
+=============
+
+npx @modelcontextprotocol/inspector
+
+
+Copilot Studio: 
+===============
+open agent, add tools - add connector
+
+
+what products do we have in stock
+
+	Here is a list of products currently in stock:
+
+	1. AudioTech Wireless Bluetooth Headphones – High-quality wireless headphones with noise cancellation (45 units 		in stock)
+	2. GameGear Gaming Mouse – RGB gaming mouse with programmable buttons (78 units in stock)
+	3. BrewMaster Coffee Maker – Automatic drip coffee maker with programmable timer (23 units in stock)
+	4. SportsFit Running Shoes – Lightweight running shoes with cushioned sole (56 units in stock)
+	5. GuardTech Smartphone Case – Protective case with card slots and stand (120 units in stock)
+	6. LightWorks Desk Lamp – LED desk lamp with adjustable brightness and color temperature (32 units in stock)
+	7. FlexFit Yoga Mat – Non-slip exercise mat for yoga and fitness (67 units in stock)
+	8. SoundWave Bluetooth Speaker – Portable waterproof Bluetooth speaker (8 units in stock)
+
+	If you need more details about any product or want to know about items with low stock, please let me know.
+
+share the product details of the desk lamp
+
+	Here are the product details for the LightWorks Desk Lamp:
+
+	- Product Name: LightWorks Desk Lamp
+	- Description: LED desk lamp with adjustable brightness and color temperature
+	- Brand: LightWorks
+	- Categories: Office, Lighting, Desk Accessories
+	- EAN: 6789012345678
+	- Price: $45.50
+	- Units in Stock: 32
+
+	If you need additional information or wish to check availability for other products, please let me know.
+
+list up all products with less than 10 items in stock
+
+	Here is the product with less than 10 items in stock:
+
+	- Product Name: SoundWave Bluetooth Speaker
+	- Description: Portable waterproof Bluetooth speaker
+	- Brand: SoundWave
+	- Categories: Electronics, Audio, Speakers
+	- EAN: 8901234567890
+	- Price: $55.00
+	- Units in Stock: 8
+
+	If you need details about other products or further assistance, please let me know.
+
+show details for product with EAN 8901234567890
+
+create a new product with the following details:
+Product Name: SoundWave Bluetooth USB Clock
+Description: Portable waterproof Bluetooth USB Clock
+Brand: SoundWave
+Categories: Electronics, Audio, Speakers
+Price: $49.00
+Units in Stock: 80
+
+8901234567891
+
+list product details for 8901234567891
+
+remove product 8901234567891
+
+
+
+
