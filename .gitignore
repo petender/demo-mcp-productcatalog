@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # .NET Core
 bin/
 obj/
@@ -42,3 +43,7 @@ node_modules/
 
 # Azure Functions
 local.settings.json
+=======
+bin
+obj
+>>>>>>> 3160e75a5e86c91c0814fae6935523070811d287
