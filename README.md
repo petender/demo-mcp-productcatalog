@@ -4,6 +4,10 @@
 
 The **Product Catalog MCP Server** is a .NET 8 web application that implements a Model Context Protocol (MCP) server for managing retail product inventory. It provides a standardized interface for AI assistants and other applications to interact with product data through a set of well-defined tools and APIs.
 
+The scenario provides an MCP Server product catalog backend which can be integrated into Copilot Studio (see Demoguide instructions) or Azure AI Foundry demos. 
+
+This scenario is part of the broader Azure Demo Catalog, available at [Trainer-Demo-Deploy](https://aka.ms/trainer-demo-deploy).
+
 ## What is MCP (Model Context Protocol)?
 
 The Model Context Protocol is a standard that enables AI assistants to securely connect with external data sources and tools. This server acts as a bridge between AI models and product inventory data, allowing natural language interactions with product management operations.
@@ -11,6 +15,7 @@ The Model Context Protocol is a standard that enables AI assistants to securely 
 ## Architecture
 
 ### Technology Stack
+
 - **Framework**: ASP.NET Core 8.0
 - **Protocol**: Model Context Protocol (MCP)
 - **Data Storage**: JSON file-based storage
@@ -44,6 +49,7 @@ public class Product
 ## Features & Capabilities
 
 ### Core Product Management
+
 - ✅ **Add Products** - Create new products in the inventory
 - ✅ **Update Products** - Modify existing product information
 - ✅ **Remove Products** - Delete products from the inventory
@@ -51,11 +57,13 @@ public class Product
 - ✅ **Search Products** - Find products by name, description, EAN, brand, or categories
 
 ### Inventory Management
+
 - ✅ **Stock Tracking** - Monitor units in stock for each product
 - ✅ **Stock Updates** - Modify inventory levels
 - ✅ **Low Stock Detection** - Identify products with low inventory levels
 
 ### Data Persistence
+
 - Products are stored in JSON format in `Data/products.json`
 - In-memory operations with file-based initialization
 - Thread-safe operations using locking mechanisms
@@ -77,10 +85,13 @@ The server exposes the following tools through the MCP protocol:
 ### Tool Details
 
 #### ListProducts
+
 Returns the complete list of all products in the inventory.
 
 #### AddProduct
+
 Adds a new product to the inventory. Requires:
+
 - name (string): Product name
 - description (string): Product description
 - ean (string): EAN barcode
@@ -90,24 +101,31 @@ Adds a new product to the inventory. Requires:
 - categories (string, optional): Comma-separated categories
 
 #### UpdateProduct
+
 Updates an existing product by EAN. Optional parameters:
+
 - name, description, cost, brand, categories
 
 #### UpdateStock
+
 Updates the stock quantity for a specific product by EAN.
 
 #### RemoveProduct
+
 Removes a product from the inventory by EAN.
 
 #### SearchProducts
+
 Searches for products using a search term that matches against name, description, EAN, brand, or categories.
 
 #### GetLowStockProducts
+
 Returns products with stock levels below a specified threshold (default: 10 units).
 
 ## Project Diagrams
 
 ### Project Structure
+
 ```mermaid
 graph TD
     Root[📁 demo-mcp-productcatalog] --> Program[📄 Program.cs]
@@ -164,6 +182,7 @@ graph TD
 ```
 
 ### Application Architecture
+
 ```mermaid
 graph LR
     subgraph "MCP Server Application"
@@ -202,7 +221,7 @@ graph LR
 
 ---
 
-## Basic Setup / Running the app Commands
+## OPTION 1: Running the app locally from your Dev environment with DevTunnel
 
 For a quick and simple setup, use these five basic commands:
 
@@ -213,7 +232,8 @@ From within the application folder in your favorite terminal/console, execute
 ```bash
 dotnet run
 ```
-which starts the application on http://Localhost:47002
+
+which starts the application on <http://Localhost:47002>
 
 
 ### 2. Run the DevTunnel to expose your locally running app to a public URL/Endpoint:
@@ -223,31 +243,77 @@ which starts the application on http://Localhost:47002
 ```bash
 devtunnel user login
 ```
+
 **What it does:** Authenticates you with the DevTunnel service using your Microsoft account. This is required before you can create or manage tunnels.
 
 ### 2. Create a Tunnel
+
 ```bash
 devtunnel create product-catalog-mcp -a --host-header unchanged
 ```
+
 **What it does:** 
+
 - Creates a new tunnel named `product-catalog-mcp`
 - `-a` flag makes the tunnel accessible to anyone (anonymous access)
 - `--host-header unchanged` preserves the original host header, which is important for applications that depend on specific host values
 
 ### 3. Create a Port Mapping
+
 ```bash
 devtunnel port create product-catalog-mcp -p 47002
 ```
+
 **What it does:** Creates a port mapping for the `product-catalog-mcp` tunnel, forwarding traffic to local port `47002` where the Product Catalog MCP Server is running.
 
 ### 4. Start the Tunnel
+
 ```bash
 devtunnel host product-catalog-mcp
 ```
+
 **What it does:** Starts hosting the `product-catalog-mcp` tunnel, making your local application accessible via a public URL. This command will display the public URL that you can use to access your Product Catalog MCP Server from anywhere.
 
 > **Note:** Keep the terminal window with `devtunnel host product-catalog-mcp` open while you need the tunnel active. Make sure your Product Catalog MCP Server is running on port 47002 before starting the tunnel.
 
-# Closing
+## OPTION 2: Deploy the app to Azure App Service
+
+### ⬇️ Installation
+
+- [Azure Developer CLI - AZD](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd)
+- When installing AZD, the above the following tools will be installed on your machine as well, if not already installed:
+- [GitHub CLI](https://cli.github.com)
+- [Bicep CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)
+- You need Owner or Contributor access permissions to an Azure Subscription to  deploy the scenario.
+
+### 🚀 Deploying the scenario in 4 steps:
+
+1. Create a new folder on your machine.
+
+```bash
+mkdir -p petender/demo-mcp-productcatalog
+```
+
+2. Next, navigate to the new folder.
+
+```bash
+cd petender/demo-mcp-productcatalog
+```
+
+3. Next, run `azd init` to initialize the deployment.
+
+```bash
+azd init -t petender/demo-mcp-productcatalog
+```
+
+4. Last, run `azd up` to trigger an actual deployment.
+
+```bash
+azd up
+```
+
+⏩ Note: you can delete the deployed scenario from the Azure Portal by deleting the Resource Group, or by running ```azd down``` from within the initiated folder.
+
+## Closing
 
 This MCP server provides a robust foundation for AI-powered product management applications while maintaining simplicity and reliability in its core operations.
