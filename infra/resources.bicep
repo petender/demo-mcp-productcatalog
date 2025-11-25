@@ -6,7 +6,7 @@ param skuName string
 param serviceTag string
 param tags object = {}
 
-resource appService 'Microsoft.Web/sites@2021-02-01' = {
+resource appService 'Microsoft.Web/sites@2023-12-01' = {
   name: appServiceName
   location: location
   tags: union(tags, {
@@ -15,10 +15,14 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
 
   properties: {
     serverFarmId: appServicePlan.id
+    siteConfig: {
+      linuxFxVersion: 'DOTNETCORE|8.0'
+      alwaysOn: false
+    }
   }
 }
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: '${appServiceName}-plan'
   location: location
   tags: tags
