@@ -38,29 +38,58 @@ static async Task<List<Product>> LoadProductsAsync(IConfiguration configuration)
 {
     try
     {
+        // Log environment information for diagnostics
+        Console.WriteLine($"[DIAGNOSTIC] AppContext.BaseDirectory: {AppContext.BaseDirectory}");
+        Console.WriteLine($"[DIAGNOSTIC] Environment.CurrentDirectory: {Environment.CurrentDirectory}");
+        Console.WriteLine($"[DIAGNOSTIC] ASPNETCORE_ENVIRONMENT: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+        
         var productCatalogConfig = configuration.GetSection(ProductCatalogMCPServerConfiguration.SectionName).Get<ProductCatalogMCPServerConfiguration>();
         
         if (productCatalogConfig == null || string.IsNullOrEmpty(productCatalogConfig.ProductsPath))
         {
-            Console.WriteLine("Product catalog configuration or ProductsPath not found. Using empty product list.");
+            Console.WriteLine("[ERROR] Product catalog configuration or ProductsPath not found. Using empty product list.");
             return new List<Product>();
         }
 
-        if (!File.Exists(productCatalogConfig.ProductsPath))
+        Console.WriteLine($"[DIAGNOSTIC] Configured ProductsPath: {productCatalogConfig.ProductsPath}");
+
+        var productsPath = Path.Combine(AppContext.BaseDirectory, productCatalogConfig.ProductsPath);
+        Console.WriteLine($"[DIAGNOSTIC] Resolved full path: {productsPath}");
+        Console.WriteLine($"[DIAGNOSTIC] File exists: {File.Exists(productsPath)}");
+
+        // Also try listing the Data directory to verify its contents
+        var dataDir = Path.Combine(AppContext.BaseDirectory, "Data");
+        if (Directory.Exists(dataDir))
         {
-            Console.WriteLine($"Products file not found at: {productCatalogConfig.ProductsPath}. Using empty product list.");
+            Console.WriteLine($"[DIAGNOSTIC] Data directory contents:");
+            foreach (var file in Directory.GetFiles(dataDir))
+            {
+                Console.WriteLine($"  - {file}");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"[DIAGNOSTIC] Data directory does not exist at: {dataDir}");
+        }
+
+        if (!File.Exists(productsPath))
+        {
+            Console.WriteLine($"[ERROR] Products file not found at: {productsPath}. Using empty product list.");
             return new List<Product>();
         }
 
-        var jsonContent = await File.ReadAllTextAsync(productCatalogConfig.ProductsPath);
+        var jsonContent = await File.ReadAllTextAsync(productsPath);
+        Console.WriteLine($"[DIAGNOSTIC] JSON content length: {jsonContent?.Length ?? 0} bytes");
+        
         var products = JsonSerializer.Deserialize<List<Product>>(jsonContent, GetJsonOptions());
 
-        Console.WriteLine($"Loaded {products?.Count ?? 0} products from file: {productCatalogConfig.ProductsPath}");
+        Console.WriteLine($"[SUCCESS] Loaded {products?.Count ?? 0} products from file: {productsPath}");
         return products ?? new List<Product>();
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Error loading products from file: {ex.Message}. Using empty product list.");
+        Console.WriteLine($"[ERROR] Error loading products from file: {ex.Message}");
+        Console.WriteLine($"[ERROR] Stack trace: {ex.StackTrace}");
         return new List<Product>();
     }
 }
