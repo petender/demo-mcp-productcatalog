@@ -101,8 +101,35 @@ Confirm the creation of the MCP Server with those details.
 share details about the desk lamp
 ```
 
+9. Since it's the first time your agent needs to rely on the MCP Server, it will return a connection error. Click on **Open Connection Manager** to fix this.
 
+<img src="https://raw.githubusercontent.com/petender/demo-mcp-productcatalog/refs/heads/main/demoguide/Connection_Error.png" alt="Agent Connection Error" style="width:70%;">
+<br></br>
 
+10. From **Manage your Connections**, for the given MCP Connector, click **Connect** and wait until the status shows **Connected**.
+
+<img src="https://raw.githubusercontent.com/petender/demo-mcp-productcatalog/refs/heads/main/demoguide/Manage_Connections.png" alt="Manage Connections successful" style="width:70%;">
+<br></br>
+
+11. Close the Connection Manager and return to the **test your agent**, and click **Retry**. The agent will continue/restart the process and will respond with the product details of the Desk Lamp product, such as ProductName, Number of items in Stock, Price, etc...
+
+<img src="https://raw.githubusercontent.com/petender/demo-mcp-productcatalog/refs/heads/main/demoguide/Product_Details_Response.png" alt="Product Details as prompt response" style="width:70%;">
+<br></br>
+
+12. Other sample prompts you could use, relying on different 'tools' from the MCP Server:
+
+- list up all products with less than 10 items in stock
+- show details for product with EAN 8901234567890
+- create a new product with the following details:
+
+*Product Name: SoundWave Bluetooth USB Clock*
+*Description: Portable waterproof Bluetooth USB Clock*
+*Brand: SoundWave*
+*Categories: Electronics, Audio, Speakers*
+*Price: $49.00*
+*Units in Stock: 80*
+
+which will prompt you for the missing EAN Barcode.
 
 [comment]: <> (this is the closing section of the demo steps. Please do not change anything here to keep the layout consistant with the other demoguides.)
 <br></br>
