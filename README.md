@@ -4,7 +4,7 @@
 
 The **Product Catalog MCP Server** is a .NET 8 web application that implements a Model Context Protocol (MCP) server for managing retail product inventory. It provides a standardized interface for AI assistants and other applications to interact with product data through a set of well-defined tools and APIs.
 
-This template could be used as a starting point for Azure AI Foundry - AI Agent Service deployment, which is related to Microsoft Learn AI-3026 ILT. 
+The scenario provides an MCP Server product catalog backend which can be integrated into Copilot Studio (see Demoguide instructions) or Azure AI Foundry demos. 
 
 This scenario is part of the broader Azure Demo Catalog, available at [Trainer-Demo-Deploy](https://aka.ms/trainer-demo-deploy).
 
@@ -15,6 +15,7 @@ The Model Context Protocol is a standard that enables AI assistants to securely 
 ## Architecture
 
 ### Technology Stack
+
 - **Framework**: ASP.NET Core 8.0
 - **Protocol**: Model Context Protocol (MCP)
 - **Data Storage**: JSON file-based storage
