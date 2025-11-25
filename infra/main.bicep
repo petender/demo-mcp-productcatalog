@@ -11,19 +11,22 @@ param location string
 
 // Tags that should be applied to all resources.
 // 
-// Note that 'azd-service-name' tags should be applied separately to service host resources.
-// Example usage:
-//   tags: union(tags, { 'azd-service-name': <service name in azure.yaml> })
+
+// serviceName is used as value for the tag (azd-service-name) azd uses to identify deployment host
+param serviceName string = 'web'
 var tags = {
   'azd-env-name': environmentName
-  'SecurityControl': 'Ignore'
+  SecurityControl: 'Ignore'
 }
+
+var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 
 // This deploys the Resource Group
 resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: 'rg-${environmentName}'
   location: location
   tags: tags
+  
 }
 
 module resources 'resources.bicep' = {
@@ -31,8 +34,10 @@ module resources 'resources.bicep' = {
   scope: rg
   params: {
     location: location
-    appServiceName: 'product-catalog-mcp-server-webapp'
+    appServiceName: '${resourceToken}app'
     skuName: 'F1'
+    serviceTag: serviceName
+    tags: tags
   }
 }
 
