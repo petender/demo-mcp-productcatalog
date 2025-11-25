@@ -15,6 +15,7 @@ The Model Context Protocol is a standard that enables AI assistants to securely 
 ## Architecture
 
 ### Technology Stack
+
 - **Framework**: ASP.NET Core 8.0
 - **Protocol**: Model Context Protocol (MCP)
 - **Data Storage**: JSON file-based storage
