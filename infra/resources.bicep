@@ -15,10 +15,7 @@ resource appService 'Microsoft.Web/sites@2023-12-01' = {
 
   properties: {
     serverFarmId: appServicePlan.id
-    siteConfig: {
-      linuxFxVersion: 'DOTNETCORE|8.0'
-      alwaysOn: false
-    }
+    
   }
 }
 
